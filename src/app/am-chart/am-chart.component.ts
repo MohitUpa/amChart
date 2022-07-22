@@ -154,50 +154,38 @@ export class AmChartComponent implements AfterViewInit {
 
       circle2.events.on("pointerover", () => {
 
-        let circle2 = container.children.push(
-          am5.Circle.new(root, {
-            radius: 7,
-            fill: am5.color(0xFF7558),
-          })
-        );
-
-        // circle.animate({
-        //   key: "scale",
-        //   from: 1,
-        //   to: 5,
-        //   duration: 1500,
-        //   loops: Infinity
-        // });
-        // circle.animate({
-        //   key: "opacity",
-        //   from: 1,
-        //   to: 0,
-        //   duration: 1500,
-        //   loops: Infinity,
-        // });
+       
+        circle.animate({
+          key: "scale",
+          from: 1,
+          to: 5,
+          duration: 900,
+          loops: Infinity
+        });
+        circle.animate({
+          key: "opacity",
+          from: 1,
+          to: 0,
+          duration: 900,
+          loops: Infinity,
+        });
       })
 
       circle2.events.on("pointerout", () => {
-        let circle2 = container.children.push(
-          am5.Circle.new(root, {
-            radius: 4,
-            fill: am5.color(0xFF7558),
-          })
-        );
-        // circle.animate({
-        //   key: "scale",
-        //   from: 1,
-        //   to: 5,
-        //   duration: 0,
-        //   loops: Infinity
-        // });
-        // circle.animate({
-        //   key: "opacity",
-        //   from: 1,
-        //   to: 0,
-        //   duration: 0,
-        //   loops: Infinity
-        // });
+        circle.animate({
+          key: "scale",
+          from: 1,
+          to: 5,
+          duration: 0,
+          loops: Infinity
+        });
+        circle.animate({
+          key: "opacity",
+          from: 1,
+          to: 0,
+          duration: 0,
+          loops: Infinity
+        });
       })
 
 

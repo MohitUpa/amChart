@@ -82,7 +82,7 @@ export class PieChartComponent implements AfterViewInit {
     series.labels.template.events.on("visibilitychanged", hideSmall);
 
     function hideSmall(ev: any) {
-      if (ev.target.dataItem.values.value.percent < 25) {
+      if (ev.target.dataItem.values.value.percent < 21) {
         ev.target.hide();
       }
       else {
@@ -94,7 +94,6 @@ export class PieChartComponent implements AfterViewInit {
     console.log(chart.data[2]);
 
     series.slices.template.tooltipText = "{category}";
-    // series.slices.template.interactionsEnabled = false;
     console.log(series);
   }
 
