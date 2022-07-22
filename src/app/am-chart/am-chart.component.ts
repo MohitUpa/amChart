@@ -100,28 +100,38 @@ export class AmChartComponent implements AfterViewInit {
     pointSeries.bullets.push(() => {
       let container = am5.Container.new(root, {});
 
-
-
       let circle = container.children.push(
-        am5.Circle.new(root, { 
+        am5.Circle.new(root, {
           radius: 4,
           tooltipY: 0,
           fill: am5.color(0xFF7558),
           strokeOpacity: 0,
+          tooltip: am5.Tooltip.new(root, {
+            paddingBottom:0,
+            paddingRight:0,
+            paddingLeft:0,
+            paddingTop:0
+          }),
           tooltipHTML: `
             <div style="text-align:center; background:#fff; padding:10px; ">
             <img src="{flag}" width="20px" height="20px" style="border-radius:50%"><br>
             {title}</div>
-            `
+          `
         })
       );
-      
+
       let circle2 = container.children.push(
         am5.Circle.new(root, {
           radius: 4,
           tooltipY: 0,
           fill: am5.color(0xFF7558),
           strokeOpacity: 0,
+          tooltip: am5.Tooltip.new(root, {
+            paddingBottom:0,
+            paddingRight:0,
+            paddingLeft:0,
+            paddingTop:0
+          }),
           tooltipHTML: `
           <div style="text-align:center; background:#fff; padding:10px; ">
           <img src="{flag}" width="20px" height="20px" style="border-radius:50%"><br>
@@ -131,6 +141,9 @@ export class AmChartComponent implements AfterViewInit {
       );
 
       
+
+
+
       circle.events.on("click", () => {
         this.toDiffrentPage()
       });
@@ -139,6 +152,7 @@ export class AmChartComponent implements AfterViewInit {
       });
 
       circle2.events.on("pointerover", () => {
+
         circle.animate({
           key: "scale",
           from: 1,
@@ -152,10 +166,11 @@ export class AmChartComponent implements AfterViewInit {
           to: 0,
           duration: 600,
           loops: Infinity
-        });       
+        });
       })
 
       circle2.events.on("pointerout", () => {
+
         circle.animate({
           key: "scale",
           from: 1,
@@ -169,30 +184,9 @@ export class AmChartComponent implements AfterViewInit {
           to: 0,
           duration: 0,
           loops: Infinity
-        });        
+        });
       })
 
-     
-
-
-      // circle.events.on("focus",()=> {
-      //   console.log('focus');        
-      // })
-
-      // circle.animate({
-      //   key: "scale",
-      //   from: 1,
-      //   to: 5,
-      //   duration: 600,
-      //   loops: Infinity
-      // });
-      // circle.animate({
-      //   key: "opacity",
-      //   from: 1,
-      //   to: 0,
-      //   duration: 600,
-      //   loops: Infinity
-      // });
 
       return am5.Bullet.new(root, {
         sprite: container
