@@ -59,20 +59,28 @@ export class AmChartComponent implements AfterViewInit {
       })
     );
 
+
     // Create series for background fill
     // https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/#Background_polygon
     let backgroundSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {}));
     backgroundSeries.mapPolygons.template.setAll({
       fill: root.interfaceColors.get("alternativeBackground"),
+      // fill: am5.color(0xE8FFFE),
       fillOpacity: 0,
       strokeOpacity: 0
     });
 
+
     // Add background polygon
     // https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/#Background_polygon
     backgroundSeries.data.push({
-      geometry: am5map.getGeoRectangle(90, 180, -90, -180)
+      geometry: am5map.getGeoRectangle(90, 180, -90, -180),
+       fill: am5.color(0x22ff55),
+      stroke: am5.color(0xffffff),
     });
+
+
+
 
     // Create main polygon series for countries
     // https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/
@@ -90,12 +98,48 @@ export class AmChartComponent implements AfterViewInit {
       strokeOpacity: 0.3
     });
 
+    //create background series
+    let colors = am5.ColorSet.new(root, {});
+    let worldSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
+      geoJSON: am5geodata_worldLow,
+    }));
+
+
+    
+
+    worldSeries.mapPolygons.template.setAll({
+      interactive: true,
+      fill: am5.color(0xD2D2D2),
+      tooltipText: "{name}",
+      templateField: "polygonSettings"
+    });
+
+    worldSeries.data.setAll([{
+      id: "US",
+      polygonSettings: {
+        fill: am5.color(0x7EBDBA)
+      }
+    }, {
+      id: "CA",
+      polygonSettings: {
+        fill: am5.color(0x7EBDBA)
+      }
+    }, {
+      id: "IN",
+      polygonSettings: {
+        fill: am5.color(0x7EBDBA)
+      }
+    }, {
+      id: "MX",
+      polygonSettings: {
+        fill: am5.color(0x7EBDBA)
+      }
+    }])
+
+
     // Create point series for markers
     // https://www.amcharts.com/docs/v5/charts/map-chart/map-point-series/
     let pointSeries = chart.series.push(am5map.MapPointSeries.new(root, {}));
-    let colorset = am5.ColorSet.new(root, {});
-
-    let test = false;
 
     pointSeries.bullets.push(() => {
       let container = am5.Container.new(root, {});
@@ -106,17 +150,6 @@ export class AmChartComponent implements AfterViewInit {
           tooltipY: 0,
           fill: am5.color(0xFF7558),
           strokeOpacity: 0,
-          tooltip: am5.Tooltip.new(root, {
-            paddingBottom: 0,
-            paddingRight: 0,
-            paddingLeft: 0,
-            paddingTop: 0
-          }),
-          tooltipHTML: `
-            <div style="text-align:center; background:#fff; padding:10px; ">
-            <img src="{flag}" width="20px" height="20px" style="border-radius:50%"><br>
-            {title}</div>
-          `
         })
       );
 
@@ -126,7 +159,6 @@ export class AmChartComponent implements AfterViewInit {
           tooltipY: 0,
           fill: am5.color(0xFF7558),
           strokeOpacity: 0,
-          
           tooltip: am5.Tooltip.new(root, {
             paddingBottom: 0,
             paddingRight: 0,
@@ -134,16 +166,12 @@ export class AmChartComponent implements AfterViewInit {
             paddingTop: 0
           }),
           tooltipHTML: `
-          <div style="text-align:center; background:#fff; padding:10px; ">
+          <div style="text-align:center; background:#fff; padding:10px; width: 120px;color:grey; border-radius:3px;">
           <img src="{flag}" width="20px" height="20px" style="border-radius:50%"><br>
           {title}</div>
           `
         })
       );
-
-
-
-
 
       circle.events.on("click", () => {
         this.toDiffrentPage()
@@ -153,8 +181,6 @@ export class AmChartComponent implements AfterViewInit {
       });
 
       circle2.events.on("pointerover", () => {
-
-       
         circle.animate({
           key: "scale",
           from: 1,
@@ -193,6 +219,10 @@ export class AmChartComponent implements AfterViewInit {
         sprite: container
       });
     });
+
+    //background color
+
+
 
 
 
@@ -313,6 +343,8 @@ export class AmChartComponent implements AfterViewInit {
       let city = cities[i];
       addCity(city.longitude, city.latitude, city.title, city.flag);
     }
+
+  
 
     function addCity(longitude: number, latitude: number, title: string, flag: string) {
       pointSeries.data.push({
