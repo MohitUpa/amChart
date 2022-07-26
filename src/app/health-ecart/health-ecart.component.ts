@@ -54,14 +54,11 @@ export class HealthEcartComponent implements OnInit, AfterViewInit {
         tooltip: {},
         legend: [
           {
-            // selectedMode: 'single',
             data: graph.categories.map(function (a: { name: string }) {
               return a.name;
             })
           }
         ],
-        // animationDuration: 1500,
-        // animationEasingUpdate: 'quinticInOut',
         series: [
           {
             name: '',
@@ -79,24 +76,10 @@ export class HealthEcartComponent implements OnInit, AfterViewInit {
               verticalAlign: 'middle',
               fontSize: '10'
             },
-            // label: {
-            //   color: '#fff',
-            //   fontSize: '80',
-            //   position: 'center',
-            // },
             lineStyle: {
               color: 'source',
               curveness: 0.3
             },
-            // emphasis: {
-            //   focus: 'adjacency',
-            //   lineStyle: {
-            //     width: 10
-            //   }
-            // }
-            // edgeSymbol: ['circle', 'arrow'],
-            // edgeSymbolSize: [4, 10],
-
           }
         ]
       };
