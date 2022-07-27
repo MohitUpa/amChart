@@ -7,7 +7,7 @@ import { NdhsMapComponent } from './ndhs-map/ndhs-map.component';
 import { NewMapComponent } from './new-map/new-map.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { TestComponent } from './test/test.component';
-import { VizzuChartComponent } from './vizzu-chart/vizzu-chart.component';
+import { VizzuComponent } from './vizzu/vizzu.component';
 
 const routes: Routes = [
   { path: 'map', component: AmChartComponent },
@@ -15,9 +15,9 @@ const routes: Routes = [
   { path: 'pie-chart', component: PieChartComponent },
   { path: 'health-chart', component: HealthCartComponent },
   { path: 'health-echart', component: HealthEcartComponent },
-  { path: 'vizzu-chart', component: VizzuChartComponent },
   { path: 'new-map', component: NewMapComponent },
-  { path: 'r-map', component: NdhsMapComponent  }
+  { path: 'r-map', component: NdhsMapComponent  },
+  { path: 'vizzu', component: VizzuComponent  },
 ];
 
 @NgModule({

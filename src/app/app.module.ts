@@ -10,9 +10,9 @@ import { TestComponent } from './test/test.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { HealthCartComponent } from './health-cart/health-cart.component';
 import { HealthEcartComponent } from './health-ecart/health-ecart.component';
-import { VizzuChartComponent } from './vizzu-chart/vizzu-chart.component';
 import { NewMapComponent } from './new-map/new-map.component';
 import { NdhsMapComponent } from './ndhs-map/ndhs-map.component';
+import { VizzuComponent } from './vizzu/vizzu.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +22,9 @@ import { NdhsMapComponent } from './ndhs-map/ndhs-map.component';
     PieChartComponent,
     HealthCartComponent,
     HealthEcartComponent,
-    VizzuChartComponent,
     NewMapComponent,
-    NdhsMapComponent
+    NdhsMapComponent,
+    VizzuComponent
   ],
   imports: [
     BrowserModule,

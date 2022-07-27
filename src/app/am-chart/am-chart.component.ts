@@ -104,9 +104,6 @@ export class AmChartComponent implements AfterViewInit {
       geoJSON: am5geodata_worldLow,
     }));
 
-
-    
-
     worldSeries.mapPolygons.template.setAll({
       interactive: true,
       fill: am5.color(0xD2D2D2),
