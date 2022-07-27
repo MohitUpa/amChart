@@ -173,6 +173,7 @@ export class AmChartComponent implements AfterViewInit {
         })
       );
 
+
       circle.events.on("click", () => {
         this.toDiffrentPage()
       });

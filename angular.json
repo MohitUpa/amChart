@@ -29,7 +29,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/vizzu/dist/vizzu.min.js"
+            ]
           },
           "configurations": {
             "production": {
