@@ -192,6 +192,7 @@ export class VizzuComponent implements OnInit, AfterViewInit {
     networkSeries.dataFields.children = "children";
     networkSeries.dataFields.fixed = "fixed";
     networkSeries.dataFields.color = "color";
+    
 
     networkSeries.nodes.template.propertyFields.x = "x";
     networkSeries.nodes.template.propertyFields.y = "y";
@@ -206,11 +207,11 @@ export class VizzuComponent implements OnInit, AfterViewInit {
     networkSeries.nodes.template.label.truncate = true;
     networkSeries.links.template.distance = 0;
     networkSeries.links.template.disabled = true;
+    networkSeries.nodes.template.interactionsEnabled = false;
 
     networkSeries.links.template.strokeWidth = 0;
     networkSeries.links.template.strokeOpacity = 0;
     networkSeries.nodes.template.label.fill = am4core.color("#fff");
-
 
  
 
