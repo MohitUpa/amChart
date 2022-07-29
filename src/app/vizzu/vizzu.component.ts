@@ -330,29 +330,32 @@ export class VizzuComponent implements OnInit, AfterViewInit {
 
     series1.bullets.push(function() {
       return am5.Bullet.new(root, {
-        locationX: 1,
-        locationY: 0.5,
+        locationX: 0.8,
+        locationY: -0.5,
         sprite: am5.Label.new(root, {
           centerY: am5.p50,
-          text: "{valueX}%",
+          html:`<div style="text-align:center;">
+                   {valueX}% <br> {text}<br>
+                   <img src="./assets/images/line.png" width="120" style="margin-top:-17px;margin-left:-17px;">
+              </div>`,
           populateText: true
         })
       });
     });
 
-    series1.bullets.push(function() {
-      return am5.Bullet.new(root, {
-        locationX: 1,
-        locationY: 0.5,
-        sprite: am5.Label.new(root, {
-          centerX: am5.p100,
-          centerY: am5.p50,
-          text: "{text}",
-          fill: am5.color(0xffffff),
-          populateText: true
-        })
-      });
-    });
+    // series1.bullets.push(function() {
+    //   return am5.Bullet.new(root, {
+    //     locationX: 1,
+    //     locationY: 0.5,
+    //     sprite: am5.Label.new(root, {
+    //       centerX: am5.p100,
+    //       centerY: am5.p50,
+    //       text: "{text}",
+    //       fill: am5.color(0xffffff),
+    //       populateText: true
+    //     })
+    //   });
+    // });
 
    
 
