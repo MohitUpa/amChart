@@ -173,16 +173,15 @@ export class HealthCartComponent implements AfterViewInit {
     let series = container.children.push(
       am5hierarchy.ForceDirected.new(root, {
         singleBranchOnly: false,
-        downDepth: 1,
-        topDepth: 1,
+        downDepth: 0,
+        topDepth: 0,
         maxRadius: 40,
         minRadius: 8,
         valueField: "value",
         categoryField: "name",
         childDataField: "children",
         idField: "name",
-        linkWithStrength: 0.3,
-        linkWithField: "linkWith",
+        linkWithStrength: 0,
         manyBodyStrength: -15,
         centerStrength: 0.5,
       

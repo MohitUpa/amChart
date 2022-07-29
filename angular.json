@@ -30,7 +30,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "./node_modules/vizzu/dist/vizzu.min.js"
             ]
           },
           "configurations": {
