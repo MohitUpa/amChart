@@ -282,6 +282,25 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       }
     }];
 
+    let data1 = [
+      {
+        'text': 'Australia',
+        "year": "2012",
+        "income": 98,
+        "columnConfig": {
+          fill: am5.color(0x00306C),
+        }
+      }, {
+        'text': 'Rawada',
+        "year": "2011",
+        "income": 73,
+        "columnConfig": {
+          fill: am5.color(0x4A92EC),
+        }
+      }
+
+    ]
+
 
     // Create axes
     // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
@@ -289,12 +308,14 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       am5xy.CategoryAxis.new(root, {
         categoryField: "year",
         renderer: am5xy.AxisRendererY.new(root, {
-          cellStartLocation: 0.1,
+          cellStartLocation: 0.2,
           cellEndLocation: 0.9,
+          strokeOpacity: 1,
+          strokeWidth: 1
         }),
       })
-    );
-
+      );
+    
   
     yAxis.data.setAll(data);
 
@@ -302,10 +323,15 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       am5xy.ValueAxis.new(root, {
         min: 0,
         renderer: am5xy.AxisRendererX.new(root, {
-
-        }),
+          strokeOpacity: 1,
+          strokeWidth: 1
+        })
       })
     );
+   
+
+    // categoryAxis.renderer.grid.template.disabled = true;
+    // valueAxis.renderer.grid.template.disabled = true;
 
     // Add series
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
@@ -315,11 +341,7 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       yAxis: yAxis,
       valueXField: "income",
       categoryYField: "year",
-      sequencedInterpolation: true,
-      tooltip: am5.Tooltip.new(root, {
-        labelText: "[bold]{text}"
-      }),
-
+      sequencedInterpolation: true
     }));
 
     series1.columns.template.setAll({
@@ -342,22 +364,7 @@ export class VizzuComponent implements OnInit, AfterViewInit {
         })
       });
     });
-
-    // series1.bullets.push(function() {
-    //   return am5.Bullet.new(root, {
-    //     locationX: 1,
-    //     locationY: 0.5,
-    //     sprite: am5.Label.new(root, {
-    //       centerX: am5.p100,
-    //       centerY: am5.p50,
-    //       text: "{text}",
-    //       fill: am5.color(0xffffff),
-    //       populateText: true
-    //     })
-    //   });
-    // });
-
-   
+  
 
     // Add cursor
     // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
