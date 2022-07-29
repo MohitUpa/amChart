@@ -32,14 +32,14 @@ export class VizzuComponent implements OnInit, AfterViewInit {
 
   showBarChart = true;
 
- 
 
-test = true;
+
+  test = true;
   hide() {
-      this.test = !this.test
+    this.test = !this.test
   }
 
-  
+
 
 
   constructor() { }
@@ -48,7 +48,7 @@ test = true;
   }
   ngAfterViewInit(): void {
     this.myChart()
-    this. myTree()
+    this.myTree()
   }
 
   myTree() {
@@ -61,115 +61,119 @@ test = true;
     var networkSeries = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries())
 
     networkSeries.data = [{
-      name: 'Flora',
+      name: 'Bangladesh',
       value: 1,
       fixed: true,
+      color: ("#FA8E15"),
       x: am4core.percent(40),
       y: am4core.percent(40),
       children: [{
-        name: 'Black Tea', value: 1
+        name: 'Bangladesh', value: 1
       }, {
-          name: 'Chamomile', value: 1
-        }, {
-          name: 'Rose', value: 1
-        }, {
-          name: 'Jasmine', value: 1
-        }, {
-          name: 'Rose', value: 1
-        }, {
-          name: 'Jasmine', value: 1
-        }]
+        name: 'Bangladesh', value: 1
+      }, {
+        name: 'Bangladesh', value: 1
+      }, {
+        name: 'Bangladesh', value: 1
+      }, {
+        name: 'Bangladesh', value: 1
+      }, {
+        name: 'Bangladesh', value: 1
+      }]
     }, {
-      name: 'Fruity',
+      name: 'Australia',
+      color: ("#00306C"),
       fixed: true,
       value: 1,
       x: am4core.percent(50),
       y: am4core.percent(25),
       children: [{
-          name: 'Blackberry', value: 1
-        }, {
-          name: 'Raspberry', value: 1
-        }, {
-          name: 'Blueberry', value: 1
-        }, {
-          name: 'Strawberry', value: 1
-        }, {
-          name: 'Coconut', value: 1
-        }, {
-          name: 'Cherry', value: 1
-        }, {
-          name: 'Pomegranate', value: 1
-        }, {
-          name: 'Pineapple', value: 1
-        }, {
-          name: 'Grape', value: 1
-        }, {
-          name: 'Apple', value: 1
-        }, {
-          name: 'Peach', value: 1
-        }, {
-          name: 'Pear', value: 1
-        }, {
-          name: 'Orange', value: 1
-        }, {
-          name: 'Lemon', value: 1
-        }, {
-          name: 'Lime', value: 1
-        
+        name: 'Australia', value: 1
+      }, {
+        name: 'Australia', value: 1
+      }, {
+        name: 'Australia', value: 1
+      }, {
+        name: 'Australia', value: 1
+      }, {
+        name: 'Australia', value: 1
+      }, {
+        name: 'Australia', value: 1
+      }, {
+        name: 'Australia', value: 1
+      }, {
+        name: 'Australia', value: 1
+      }, {
+        name: 'Brazil', value: 1
+      }, {
+        name: 'Brazil', value: 1
+      }, {
+        name: 'Brazil', value: 1
+      }, {
+        name: 'Brazil', value: 1
+      }, {
+        name: 'Brazil', value: 1
+      }, {
+        name: 'canada', value: 1
+      }, {
+        name: 'canada', value: 1
+
       }]
     }, {
-      name: 'Other',
+      name: 'Rawada',
+      color: ("#4A92EC"),
       fixed: true,
-       value: 1,
+      value: 1,
       x: am4core.percent(50),
       y: am4core.percent(50),
       children: [{
-          name: 'Stale', value: 1
-        }, {
-          name: 'Cardboard', value: 1
-        }, {
-          name: 'Papery', value: 1
-        }, {
-          name: 'Woody', value: 1
-        }, {
-          name: 'Moldy/Damp', value: 1
-        }, {
-          name: 'Musty/Dusty', value: 1
-        }, {
-          name: 'Musty/Earthy', value: 1
-        }, {
-          name: 'Animalic', value: 1
-        }, {
-          name: 'Meaty Brothy', value: 1
-        }, {
-          name: 'Phenolic', value: 1
-        }, {
-          name: 'Phenolic', value: 1
-        }, {
-          name: 'Phenolic', value: 1
-        }
-        ]
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }, {
+        name: 'India', value: 1
+      }
+      ]
     }, {
-      name: 'Roasted',
+      name: 'colombia',
+      color: ("#4AEC9B"),
       fixed: true,
       value: 1,
       x: am4core.percent(60),
       y: am4core.percent(40),
       children: [{
-        name: 'Pipe Tobacco', value: 1
+        name: 'colombia', value: 1
       }, {
-        name: 'Tobacco', value: 1
+        name: 'colombia', value: 1
       }, {
-          name: 'Acrid', value: 1
-        }, {
-          name: 'Ashy', value: 1
-        }, {
-          name: 'Smoky', value: 1
-        }, {
-          name: 'Brown, Roast', value: 1
+        name: 'colombia', value: 1
+      }, {
+        name: 'colombia', value: 1
+      }, {
+        name: 'colombia', value: 1
+      }, {
+        name: 'colombia', value: 1
       }]
 
-    },{
+    }, {
       name: 'Roasted',
       fixed: true,
       value: 1,
@@ -187,28 +191,34 @@ test = true;
     networkSeries.dataFields.value = "value";
     networkSeries.dataFields.children = "children";
     networkSeries.dataFields.fixed = "fixed";
+    networkSeries.dataFields.color = "color";
 
     networkSeries.nodes.template.propertyFields.x = "x";
     networkSeries.nodes.template.propertyFields.y = "y";
 
     networkSeries.nodes.template.tooltipText = "{name}";
     networkSeries.nodes.template.fillOpacity = 1;
-     // networkSeries.nodes.template.
 
     networkSeries.nodes.template.label.text = "{name}"
     networkSeries.fontSize = 8;
     // networkSeries.maxLevels = 3;
     networkSeries.nodes.template.label.hideOversized = true;
     networkSeries.nodes.template.label.truncate = true;
-    networkSeries.links.template.distance = 0
-    networkSeries.links.template.disabled = true; 
+    networkSeries.links.template.distance = 0;
+    networkSeries.links.template.disabled = true;
 
-    networkSeries.links.template.strokeWidth = 5;
-    networkSeries.links.template.strokeOpacity = 1;
+    networkSeries.links.template.strokeWidth = 0;
+    networkSeries.links.template.strokeOpacity = 0;
+    networkSeries.nodes.template.label.fill = am4core.color("#fff");
 
-} 
 
-myChart() {
+ 
+
+
+
+  }
+
+  myChart() {
 
 
     /*************AmChart */
@@ -241,25 +251,29 @@ myChart() {
     }))
 
     let data = [{
-      "year": "2005",
+      'text':'Australia',
+      "year": "2012",
       "income": 98,
       "columnConfig": {
         fill: am5.color(0x00306C),
       }
     }, {
-      "year": "2006",
+      'text':'Rawada',
+      "year": "2011",
       "income": 73,
       "columnConfig": {
         fill: am5.color(0x4A92EC),
       }
     }, {
-      "year": "2007",
+      'text':'colombia',
+      "year": "2010",
       "income": 50,
       "columnConfig": {
         fill: am5.color(0x4AEC9B),
       }
     }, {
-      "year": "2008",
+      'text':'bangladesh',
+      "year": "2009",
       "income": 25,
       "columnConfig": {
         fill: am5.color(0xFA8E15),
@@ -300,7 +314,7 @@ myChart() {
       categoryYField: "year",
       sequencedInterpolation: true,
       tooltip: am5.Tooltip.new(root, {
-        labelText: "[bold]{name}"
+        labelText: "[bold]{text}"
       }),
 
     }));
@@ -329,7 +343,7 @@ myChart() {
 
 
 
-}
+  }
 
 
 }
