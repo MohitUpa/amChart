@@ -220,10 +220,20 @@ export class VizzuComponent implements OnInit, AfterViewInit {
     networkSeries.nodes.template.outerCircle.strokeOpacity = 0;
     networkSeries.nodes.template.outerCircle.fillOpacity = 0;
 
+
+    var title2 = chart.titles.create();
+    title2.html = `<div style="text-align:center"
+    >Present Development <br> Avalability</div>`;
+    title2.align = 'left';
+    title2.rotation = -90;
+    title2.marginBottom = -100;
+
     var title = chart.titles.create();
     title.text = "Health Governance";
-    title.fontSize = 20;
-    title.align = 'left'
+    title.marginTop = 10;
+    title.marginLeft = 60;
+    title.fontSize = 15;
+    title.align = 'left';
   }
 
   myChart() {
@@ -301,6 +311,7 @@ export class VizzuComponent implements OnInit, AfterViewInit {
           cellEndLocation: 0.9,
           strokeOpacity: 1,
           strokeWidth: 1,
+
         }),
       }),
     );
@@ -324,15 +335,63 @@ export class VizzuComponent implements OnInit, AfterViewInit {
 
     let xAxis = chart.xAxes.push(
       am5xy.ValueAxis.new(root, {
-        min: 0,
+        min:0,
+        numberFormat: "#,###'%'",
         renderer: am5xy.AxisRendererX.new(root, {
           strokeOpacity: 1,
           strokeWidth: 1,
-          minGridDistance: 60,
+          minGridDistance: 8000,
         }),
-
       }),
     );
+
+    let myRange = [{
+      x: 25
+    },
+    {
+      x: 60
+    },
+    {
+      x: 80
+    },
+    {
+      x: 100
+    }]
+
+    for(var i = 0; i < data.length; i++) {
+      let value = myRange[i].x;
+      
+      let rangeDataItem = xAxis.makeDataItem({
+        value: value
+      });
+      
+      let range = xAxis.createAxisRange(rangeDataItem);
+      
+      rangeDataItem.get("label").setAll({
+        forceHidden: false,
+        text: value + "%"
+      });
+    }
+
+    // yAxis.children.moveValue(am5.Label.new(root, {
+    //    html: `<div>
+    //    Present Development
+    //    <br> Avalability</div>`,
+    //    rotation: 30, y: am5.p50, centerX: am5.p50 }), 0);
+
+    yAxis.children.moveValue(am5.Label.new(root, {
+      text: "Avalability", 
+      rotation: -90, 
+      y: am5.p50, 
+      centerX: am5.p50
+    }), 0);
+
+    yAxis.children.moveValue(am5.Label.new(root, {
+      text: "Present Development", 
+      rotation: -90, 
+      y: am5.p50, 
+      centerX: am5.p50
+    }), 0);
 
     // Add series
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
@@ -365,6 +424,7 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       });
     });
 
+
     // Add cursor
     // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
     let cursor = chart.set("cursor", am5xy.XYCursor.new(root, {
@@ -388,8 +448,19 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       x: am5.percent(20),
       centerX: am5.percent(50),
       paddingTop: -20,
-      paddingBottom: 10
+      paddingBottom: 10,
+      paddingLeft: 160,
     }));
+
+    // chart.valueAxes.push({
+    //   "position": "left",
+    //   "title": "Y axis"
+    // })
+
+    // "valueAxes": [ {
+    //   "position": "left",
+    //   "title": "Y axis"
+    // } ]
 
   }
 
