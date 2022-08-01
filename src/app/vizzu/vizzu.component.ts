@@ -237,8 +237,6 @@ export class VizzuComponent implements OnInit, AfterViewInit {
   }
 
   myChart() {
-
-
     /*************AmChart */
 
     let root = am5.Root.new("chartdiv");
@@ -335,8 +333,9 @@ export class VizzuComponent implements OnInit, AfterViewInit {
 
     let xAxis = chart.xAxes.push(
       am5xy.ValueAxis.new(root, {
-        min:0,
-        numberFormat: "#,###'%'",
+
+        min: 0,
+        numberFormat: "''",
         renderer: am5xy.AxisRendererX.new(root, {
           strokeOpacity: 1,
           strokeWidth: 1,
@@ -346,8 +345,8 @@ export class VizzuComponent implements OnInit, AfterViewInit {
     );
 
     let myRange = [{
-      x: 25
-    },
+        x: 25
+      },
     {
       x: 60
     },
@@ -358,15 +357,15 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       x: 100
     }]
 
-    for(var i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
       let value = myRange[i].x;
-      
+
       let rangeDataItem = xAxis.makeDataItem({
         value: value
       });
-      
+
       let range = xAxis.createAxisRange(rangeDataItem);
-      
+
       rangeDataItem.get("label").setAll({
         forceHidden: false,
         text: value + "%"
@@ -380,16 +379,16 @@ export class VizzuComponent implements OnInit, AfterViewInit {
     //    rotation: 30, y: am5.p50, centerX: am5.p50 }), 0);
 
     yAxis.children.moveValue(am5.Label.new(root, {
-      text: "Avalability", 
-      rotation: -90, 
-      y: am5.p50, 
+      text: "Avalability",
+      rotation: -90,
+      y: am5.p50,
       centerX: am5.p50
     }), 0);
 
     yAxis.children.moveValue(am5.Label.new(root, {
-      text: "Present Development", 
-      rotation: -90, 
-      y: am5.p50, 
+      text: "Present Development",
+      rotation: -90,
+      y: am5.p50,
       centerX: am5.p50
     }), 0);
 
@@ -451,18 +450,5 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       paddingBottom: 10,
       paddingLeft: 160,
     }));
-
-    // chart.valueAxes.push({
-    //   "position": "left",
-    //   "title": "Y axis"
-    // })
-
-    // "valueAxes": [ {
-    //   "position": "left",
-    //   "title": "Y axis"
-    // } ]
-
   }
-
-
 }
