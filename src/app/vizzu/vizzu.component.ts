@@ -222,8 +222,8 @@ export class VizzuComponent implements OnInit, AfterViewInit {
 
     var title = chart.titles.create();
     title.text = "Health Governance";
-    title.fontSize = 25;
-    title.marginBottom = 30;
+    title.fontSize = 20;
+    title.align = 'left'
   }
 
   myChart() {
@@ -256,10 +256,16 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       'text': 'Australia',
       "year": "2012",
       "income": 98,
+      "compText": "Australia",
+      "comIncome": "98%",
+      "img": "./assets/images/line.png",
       "columnConfig": {
         fill: am5.color(0x00306C),
       }
     }, {
+      "compText": "Rawada",
+      "comIncome": "77%",
+      "img": "./assets/images/line.png",
       'text': 'Rawada',
       "year": "2011",
       "income": 73,
@@ -282,24 +288,7 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       }
     }];
 
-    let data1 = [
-      {
-        'text': 'Australia',
-        "year": "2012",
-        "income": 98,
-        "columnConfig": {
-          fill: am5.color(0x00306C),
-        }
-      }, {
-        'text': 'Rawada',
-        "year": "2011",
-        "income": 73,
-        "columnConfig": {
-          fill: am5.color(0x4A92EC),
-        }
-      }
 
-    ]
 
 
     // Create axes
@@ -311,12 +300,26 @@ export class VizzuComponent implements OnInit, AfterViewInit {
           cellStartLocation: 0.2,
           cellEndLocation: 0.9,
           strokeOpacity: 1,
-          strokeWidth: 1
+          strokeWidth: 1,
         }),
-      })
-      );
-    
-  
+      }),
+    );
+
+    const myTheme = am5.Theme.new(root);
+
+    myTheme.rule("Grid").setAll({
+      visible: false
+    });
+
+    root.setThemes([
+      myTheme
+    ]);
+
+    let yRenderer = yAxis.get("renderer");
+    yRenderer.labels.template.setAll({
+      visible: false
+    });
+
     yAxis.data.setAll(data);
 
     let xAxis = chart.xAxes.push(
@@ -324,14 +327,12 @@ export class VizzuComponent implements OnInit, AfterViewInit {
         min: 0,
         renderer: am5xy.AxisRendererX.new(root, {
           strokeOpacity: 1,
-          strokeWidth: 1
-        })
-      })
-    );
-   
+          strokeWidth: 1,
+          minGridDistance: 60,
+        }),
 
-    // categoryAxis.renderer.grid.template.disabled = true;
-    // valueAxis.renderer.grid.template.disabled = true;
+      }),
+    );
 
     // Add series
     // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
@@ -350,21 +351,19 @@ export class VizzuComponent implements OnInit, AfterViewInit {
       strokeOpacity: 0
     });
 
-    series1.bullets.push(function() {
+    series1.bullets.push(function () {
       return am5.Bullet.new(root, {
         locationX: 0.8,
         locationY: -0.5,
         sprite: am5.Label.new(root, {
           centerY: am5.p50,
-          html:`<div style="text-align:center;">
-                   {valueX}% <br> {text}<br>
-                   <img src="./assets/images/line.png" width="120" style="margin-top:-17px;margin-left:-17px;">
+          html: `<div style="text-align:center;">
+                   {comIncome} <br> {compText}<br>
+                   <img src="{img}" width="120" style="margin-top:-17px;margin-left:-17px;">
               </div>`,
-          populateText: true
         })
       });
     });
-  
 
     // Add cursor
     // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
@@ -374,15 +373,24 @@ export class VizzuComponent implements OnInit, AfterViewInit {
     cursor.lineX.set("visible", false);
     cursor.lineY.set("visible", false);
 
-    // series1.labelsContainer.setAll("width", 100);
-    // series1.ticks.template.setAll("location", 0.6);
-
     series1.data.setAll(data);
 
     // Make stuff animate on load
     // https://www.amcharts.com/docs/v5/concepts/animations/
     series1.appear();
-    chart.appear(1000, 100);  
+    chart.appear(1000, 100);
+
+    chart.children.unshift(am5.Label.new(root, {
+      text: "Helath Governance",
+      fontSize: 18,
+      fontWeight: "500",
+      textAlign: "center",
+      x: am5.percent(20),
+      centerX: am5.percent(50),
+      paddingTop: -20,
+      paddingBottom: 10
+    }));
+
   }
 
 
