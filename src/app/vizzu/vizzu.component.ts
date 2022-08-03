@@ -339,14 +339,14 @@ export class VizzuComponent implements OnInit, AfterViewInit {
         renderer: am5xy.AxisRendererX.new(root, {
           strokeOpacity: 1,
           strokeWidth: 1,
-          minGridDistance: 8000,
+          minGridDistance: 60,
         }),
       }),
     );
 
     let myRange = [{
-        x: 25
-      },
+      x: 25
+    },
     {
       x: 60
     },

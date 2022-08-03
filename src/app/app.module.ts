@@ -13,6 +13,7 @@ import { HealthEcartComponent } from './health-ecart/health-ecart.component';
 import { NewMapComponent } from './new-map/new-map.component';
 import { NdhsMapComponent } from './ndhs-map/ndhs-map.component';
 import { VizzuComponent } from './vizzu/vizzu.component';
+import { ObjectChangeComponent } from './object-change/object-change.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { VizzuComponent } from './vizzu/vizzu.component';
     HealthEcartComponent,
     NewMapComponent,
     NdhsMapComponent,
-    VizzuComponent
+    VizzuComponent,
+    ObjectChangeComponent
   ],
   imports: [
     BrowserModule,
