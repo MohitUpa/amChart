@@ -11224,16 +11224,6 @@ export class ObjectChangeComponent implements OnInit {
   ngOnInit(): void {
     this.test();
     this.testData();
-
-    const data = [{ id: 1, val: 10 }, { id: 2, val: 25 }, { id: 3, val: 20 }, { id: 1, val: 30 }, { id: 1, val: 25 }, { id: 2, val: 10 }, { id: 1, val: 20 }];
-
-    const res = Array.from(
-      data.reduce((a, { id, val }) => {
-        return a.set(id, (a.get(id) || 0) + val);
-      }, new Map())
-    );
-
-    console.log(res);
   }
 
   testData() {
@@ -11276,25 +11266,11 @@ export class ObjectChangeComponent implements OnInit {
       }, {});
     }
 
-    console.log(this.data);
-
-    // {
-    //   "q_question_score": 20,
-    //   "q_taxonomy_id": 5,
-    //   "q_indicator_score": 20,
-    //   "dt_name": "Prospective Development",
-    //   "country_id": 106,
-    //   "country_name": "Iran",
-    //   "governance_id": 1,
-    //   "governance_name": "General Health",
-    //   "development_type_id": 2,
-    //   "ultimate_field": "Capacity Building",
-    //   "actual_score": 0
-    // }
-
     const groups = nestGroupsBy(this.data, ['country_id']);
     console.log(groups);
-    var test1: any;
+
+  
+
     const output = groups[106].reduce((acc: any, curr: any) => {
       const country_id = acc.find(
         (item: any) => item.country_id === curr.country_id
@@ -11308,27 +11284,32 @@ export class ObjectChangeComponent implements OnInit {
           );
         if (q_taxonomy_id) {
 
-          const res = Array.from(
+          const total_indicator_score = Array.from(
             this.data.reduce((a, { q_taxonomy_id, q_indicator_score }) => {
               return a.set(q_taxonomy_id, (a.get(q_taxonomy_id) || 0) + q_indicator_score);
             }, new Map())
           );
+          var i:any;
+          var total1:any;
+          for(i=0;i<total_indicator_score.length;i++) {
+              total1 = total_indicator_score[i][0]
+              if(total_indicator_score[i][0] == q_taxonomy_id.q_taxonomy_id) {
+                q_taxonomy_id.q_indicator_score = {q_indicator_score:total_indicator_score[1][1]}
+              }
+          } 
 
-          var i;
-          for (i = 0; i < res.length; i++) {
-            if (q_taxonomy_id.q_taxonomy_id == res[i][0]) {
-              console.log(res[i][0]);
-              
-              curr.q_indicator_score = res[i][1]
+          const total_actual_score = Array.from(
+            this.data.reduce((a, { q_taxonomy_id, actual_score }) => {
+              return a.set(q_taxonomy_id, (a.get(q_taxonomy_id) || 0) + actual_score);
+            }, new Map())
+          );
+          var j:any;
+          var total2:any;
+          for(j=0;j<total_actual_score.length;j++) {
+            if(total_actual_score[j][0] == q_taxonomy_id.q_taxonomy_id) {
+              q_taxonomy_id.actual_score = {actual_score:total_actual_score[j][1]}
             }
-          }
-
-          // const q_indicator_score = q_taxonomy_id.q_indicator_score
-          // .find(
-          //   (item:any) => { 
-          //     item.q_indicator_score === curr.q_indicator_score
-          //   }
-          // );
+          } 
 
         } else {
           // Section 3
