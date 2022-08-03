@@ -11256,8 +11256,7 @@ export class ObjectChangeComponent implements OnInit {
     const groups = nestGroupsBy(this.data, ['country_id']);
     var result: any[] = [];
     Object.keys(groups).forEach((key) => {
-      result.push(
-        groups[key].reduce((acc: any, curr: any) => {
+         const g =groups[key].reduce((acc: any, curr: any) => {
           const country_id = acc.find(
             (item: any) => item.country_id === curr.country_id
           );
@@ -11327,16 +11326,12 @@ export class ObjectChangeComponent implements OnInit {
             })
           }
           return acc;
-        }, []))
+        }, [])
+        result.push(g[0])
     }
     )
     return result;
     
-
-
-
-
-
   }
 
 }
