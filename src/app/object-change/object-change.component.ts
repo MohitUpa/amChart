@@ -11222,18 +11222,10 @@ export class ObjectChangeComponent implements OnInit {
   total_indicator_score: any;
 
   ngOnInit(): void {
-    this.test();
     this.testData();
   }
 
   testData() {
-    /**
-    * Creates nested groups by object properties.
-    * `properties` array nest from highest(index = 0) to lowest level.
-    *
-    * @param {String[]} properties
-    * @returns {Object}
-    */
     function nestGroupsBy(arr: any, properties: any) {
       properties = Array.from(properties);
       if (properties.length === 1) {
@@ -11247,14 +11239,6 @@ export class ObjectChangeComponent implements OnInit {
       return grouped;
     }
 
-    /**
-     * Group objects by property.
-     * `nestGroupsBy` helper method.
-     *
-     * @param {String} property
-     * @param {Object[]} conversions
-     * @returns {Object}
-     */
     function groupBy(conversions: any[], property: string | number) {
       return conversions.reduce((acc: { [x: string]: any[]; }, obj: { [x: string]: any; }) => {
         let key = obj[property];
@@ -11269,66 +11253,50 @@ export class ObjectChangeComponent implements OnInit {
     const groups = nestGroupsBy(this.data, ['country_id']);
     console.log(groups);
 
+    Object.keys(groups).forEach((key) => {
+      const output = groups[key].reduce((acc: any, curr: any) => {
+        const country_id = acc.find(
+          (item: any) => item.country_id === curr.country_id
+        );
+        if (country_id) {
   
-
-    const output = groups[106].reduce((acc: any, curr: any) => {
-      const country_id = acc.find(
-        (item: any) => item.country_id === curr.country_id
-      );
-      if (country_id) {
-
-        // Section 2
-        const q_taxonomy_id = country_id.q_taxonomy_id
-          .find(
-            (item: any) => item.q_taxonomy_id === curr.q_taxonomy_id
-          );
-        if (q_taxonomy_id) {
-
-          const total_indicator_score = Array.from(
-            this.data.reduce((a, { q_taxonomy_id, q_indicator_score }) => {
-              return a.set(q_taxonomy_id, (a.get(q_taxonomy_id) || 0) + q_indicator_score);
-            }, new Map())
-          );
-          var i:any;
-          var total1:any;
-          for(i=0;i<total_indicator_score.length;i++) {
+          // Section 2
+          const q_taxonomy_id = country_id.q_taxonomy_id
+            .find(
+              (item: any) => item.q_taxonomy_id === curr.q_taxonomy_id
+            );
+          if (q_taxonomy_id) {
+  
+            const total_indicator_score = Array.from(
+              this.data.reduce((a, { q_taxonomy_id, q_indicator_score }) => {
+                return a.set(q_taxonomy_id, (a.get(q_taxonomy_id) || 0) + q_indicator_score);
+              }, new Map())
+            );
+            var i: any;
+            var total1: any;
+            for (i = 0; i < total_indicator_score.length; i++) {
               total1 = total_indicator_score[i][0]
-              if(total_indicator_score[i][0] == q_taxonomy_id.q_taxonomy_id) {
-                q_taxonomy_id.q_indicator_score = {q_indicator_score:total_indicator_score[1][1]}
+              if (total_indicator_score[i][0] == q_taxonomy_id.q_taxonomy_id) {
+                q_taxonomy_id.q_indicator_score = { q_indicator_score: total_indicator_score[1][1] }
               }
-          } 
-
-          const total_actual_score = Array.from(
-            this.data.reduce((a, { q_taxonomy_id, actual_score }) => {
-              return a.set(q_taxonomy_id, (a.get(q_taxonomy_id) || 0) + actual_score);
-            }, new Map())
-          );
-          var j:any;
-          var total2:any;
-          for(j=0;j<total_actual_score.length;j++) {
-            if(total_actual_score[j][0] == q_taxonomy_id.q_taxonomy_id) {
-              q_taxonomy_id.actual_score = {actual_score:total_actual_score[j][1]}
             }
-          } 
-
-        } else {
-          // Section 3
-          country_id.q_taxonomy_id.push({
-            q_taxonomy_id: curr.q_taxonomy_id,
-            actual_score: [{
-              actual_score: curr.actual_score
-            }],
-            q_indicator_score: [{
-              q_indicator_score: curr.q_indicator_score
-            }],
-          })
-        }
-      } else {
-        // Section 1
-        acc.push({
-          country_id: curr.country_id,
-          q_taxonomy_id: [
-            {
+  
+            const total_actual_score = Array.from(
+              this.data.reduce((a, { q_taxonomy_id, actual_score }) => {
+                return a.set(q_taxonomy_id, (a.get(q_taxonomy_id) || 0) + actual_score);
+              }, new Map())
+            );
+            var j: any;
+            var total2: any;
+            for (j = 0; j < total_actual_score.length; j++) {
+              if (total_actual_score[j][0] == q_taxonomy_id.q_taxonomy_id) {
+                q_taxonomy_id.actual_score = { actual_score: total_actual_score[j][1] }
+              }
+            }
+  
+          } else {
+            // Section 3
+            country_id.q_taxonomy_id.push({
               q_taxonomy_id: curr.q_taxonomy_id,
               actual_score: [{
                 actual_score: curr.actual_score
@@ -11336,105 +11304,31 @@ export class ObjectChangeComponent implements OnInit {
               q_indicator_score: [{
                 q_indicator_score: curr.q_indicator_score
               }],
-            }
-          ]
-        })
-      }
-      return acc;
-    }, []);
-
-    console.log(output)
-
-
-  }
-
-  test() {
-    const input = [
-      {
-        PurchaseInvoice_id: '8e54a096-568b-48d9-8461-826be53a32da',
-        PurchaseInvoicePosition_id: '44edfd7f-bc9e-4155-ad5c-5dace9c7c31a',
-        ProductStock_id: '0a701dbc-2661-4d67-b764-632cfb67334f',
-      },
-      {
-        PurchaseInvoice_id: '8e54a096-568b-48d9-8461-826be53a32da',
-        PurchaseInvoicePosition_id: '44edfd7f-bc9e-4155-ad5c-5dace9c7c31a',
-        ProductStock_id: '15278807-794a-4727-9bcb-f7f68dfb4d41',
-      },
-      {
-        PurchaseInvoice_id: '8e54a096-568b-48d9-8461-826be53a32da',
-        PurchaseInvoicePosition_id: '44edfd7f-bc9e-4155-ad5c-5dace9c7c31a',
-        ProductStock_id: '0ac9fcd7-73f0-47b1-8fbc-3948863e7a89',
-      },
-      {
-        PurchaseInvoice_id: '8e54a096-568b-48d9-8461-826be53a32da',
-        PurchaseInvoicePosition_id: '65e013a7-c7b2-47cf-88b7-2ab2d9bcd191',
-        ProductStock_id: null,
-      },
-      {
-        PurchaseInvoice_id: '8e54a096-568b-48d9-8461-826be53a32da',
-        PurchaseInvoicePosition_id: '8f00dde6-2548-46a7-a480-37e86a3ca895',
-        ProductStock_id: '1439dde4-d184-4c98-b0c4-6d3c88ce8496',
-      },
-      {
-        PurchaseInvoice_id: '8e54a096-568b-48d9-8461-826be53a32da',
-        PurchaseInvoicePosition_id: 'b48711b3-14b1-41ce-9f5f-4032297c1b8e',
-        ProductStock_id: null,
-      },
-      {
-        PurchaseInvoice_id: '8e54a096-568b-48d9-8461-826be53a32da',
-        PurchaseInvoicePosition_id: '4e22378d-cf56-4806-bea2-5ba0b220d3eb',
-        ProductStock_id: null,
-      },
-    ];
-
-
-
-    const output = input.reduce((acc: any, curr: any) => {
-      const purchaseInvoiceNode = acc.find(
-        (item: any) => item.PurchaseInvoice_id === curr.PurchaseInvoice_id
-      );
-      if (purchaseInvoiceNode) {
-        // Section 2
-        const purchaseInvoicePositionNode = purchaseInvoiceNode.PurchaseInvoicePosition_ids
-          .find(
-            (item: any) => item.PurchaseInvoicePosition_id === curr.PurchaseInvoicePosition_id
-          );
-        if (purchaseInvoicePositionNode) {
-          // Section 4
-          purchaseInvoicePositionNode.ProductStock_ids.push({
-            ProductStock_id: curr.ProductStock_id,
-          })
+            })
+          }
         } else {
-          // Section 3
-          purchaseInvoiceNode.PurchaseInvoicePosition_ids.push({
-            PurchaseInvoicePosition_id: curr.PurchaseInvoicePosition_id,
-            ProductStock_ids: [
+          // Section 1
+          acc.push({
+            country_id: curr.country_id,
+            q_taxonomy_id: [
               {
-                ProductStock_id: curr.ProductStock_id
+                q_taxonomy_id: curr.q_taxonomy_id,
+                actual_score: [{
+                  actual_score: curr.actual_score
+                }],
+                q_indicator_score: [{
+                  q_indicator_score: curr.q_indicator_score
+                }],
               }
             ]
           })
         }
-      } else {
-        // Section 1
-        acc.push({
-          PurchaseInvoice_id: curr.PurchaseInvoice_id,
-          PurchaseInvoicePosition_ids: [
-            {
-              PurchaseInvoicePosition_id: curr.PurchaseInvoicePosition_id,
-              ProductStock_ids: [
-                {
-                  ProductStock_id: curr.ProductStock_id
-                }
-              ]
-            }
-          ]
-        })
-      }
-      return acc;
-    }, []);
+        return acc;
+      }, []);
+  
+      console.log(output)
+    });
 
-    console.log(output)
   }
 
 }
